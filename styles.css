@@ -61,7 +61,7 @@
 }
 
 /* Spreading the zero button across two columns. */
-.gridContainer > div:nth-last-child(2){
+.gridContainer > button:nth-last-child(2){
     grid-column: 3 / 1;
 }
 
@@ -95,7 +95,7 @@
     background-color: var(--background-cal);
 }
 
-.topButtons > div:first-child{
+.topButtons > button:first-child{
  grid-column: 3 / 1;
  width: 100%;
  padding-right: 0px;

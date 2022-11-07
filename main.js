@@ -5,20 +5,19 @@ const gridContainer = document.querySelector('.gridContainer');
 const calculatorContainer = document.querySelector('.window');
 const sideButtonsContainer = document.querySelector('.sideButtons');
 const topButtonsContainer = document.querySelector('.topButtons');
-const removeNumber = document.getElementById('number')
 let allOperators = document.getElementsByClassName('eval')
 let currentSum = [];
 
 
-
 // Create a 3 by 3 grid of numbers 
 const numberGrid = () => {
+
     for (let index = 9; index >= 0; index--) {
         let cell = document.createElement('button');
         // Append index content of div 
         cell.textContent = index
         cell.setAttribute('id', index)
-        cell.classList.add("box", "nums")
+        cell.classList.add("box", "nums", "btn-light", "waves-effect")
         cell.setAttribute("onClick", "evaluationFunctions(this.id)")
         gridContainer.appendChild(cell)
 
@@ -31,10 +30,12 @@ const numberGrid = () => {
             gridContainer.appendChild(dot)
         }  
     }    
+
 }
+
 numberGrid()
 
-// Populate the top and side bar with operator buttons.
+// Populate the top bar with operator buttons.
 const rightOperators = () => {
 
     const symbols = ["*", "-", "+", "="];
@@ -47,9 +48,12 @@ const rightOperators = () => {
         cell.setAttribute("onClick", "evaluationFunctions(this.id)")
         sideButtonsContainer.appendChild(cell)   
     }
+
 }
+
 rightOperators()
 
+// Populate the right-hand-side bar with operator buttons.
 const topOperators = () =>{
 
     const symbols = ["AC", "%", "/"];
@@ -62,19 +66,40 @@ const topOperators = () =>{
         if(symbols[index].match("AC")){
             // sets the AC button to the reset function
             cell.setAttribute("onClick", "resetFunc(this.id)")
+            cell.classList.remove("eval")
         } else {
             // Sets all other buttons to the sum function
             cell.setAttribute("onClick", "evaluationFunctions(this.id)")
         }
-
         topButtonsContainer.appendChild(cell)
     }
+
 }
+
 topOperators()
+
+
+const clearFunc = (DisableStatus) => {
+
+    // Stops operator buttons being placed into the currentSum array alongside each other
+    for(var i = 0; i < allOperators.length; i++) {
+        // if(allOperators[i].match())
+        allOperators[i].disabled = DisableStatus ? true : false;  
+    }
+
+}
+
+// Stops user from passing an operator into the equation function 
+// before the currentSum array contains a number 
+if(currentSum.length <= 0){
+
+    clearFunc(true)
+
+}
 
 function evaluationFunctions(id){
 
-    if(id === "="){
+    if (id === "="){
         // If id is equal to "=" convert currentSum array to a string and pass result to returnSum function
         let equation = currentSum.join('');
         console.log(equation)
@@ -84,40 +109,38 @@ function evaluationFunctions(id){
     } else if (Number(id) == id){
         // Push id to array and set disabled attribute on all operator buttons to false
         currentSum.push(id)
-        for(var i = 0; i < allOperators.length; i++) {
-            allOperators[i].disabled = false;
-            // console.log(allOperators[i])    
-        }
+        clearFunc(false)
+
         // console.log(id, "number output")
 
     } else if (Number(id) != id){
         // Push id to array and set disabled attribute on all operator buttons to true
         currentSum.push(id)
-        for(var i = 0; i < allOperators.length; i++) {
-            allOperators[i].disabled = true;
-            // console.log(allOperators[i])    
-        }
+        clearFunc(true)
         // console.log(id, "operator output")
     }
 
 }
 
 function returnSum(equation){
+
     // returns results to the console
     let sum = eval(equation)
 
     calculatorContainer.innerHTML = sum
+    clearFunc(true)
     console.log(sum, "sum")
+
 }
 
 const resetFunc = () => {
 
     // Reset the equation array 
     currentSum = [];
-
     // Reset the displayed result to zero
     calculatorContainer.innerHTML = "0"
     console.log(currentSum)
+
 }
 
 
