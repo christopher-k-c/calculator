@@ -1,0 +1,103 @@
+
+:root{
+    --background-cal: rgb(32, 29, 27);
+    --background: rgb(15, 15, 15);
+    --font: rgb(185, 70, 4);
+    --window-background: rgb(53, 53, 53);
+    --border: 1px solid rgba(0, 0, 0, 0);
+    --radius: 5px;
+}
+
+.calculator-container {
+    width: 100%;
+    height: 60rem;
+    background-color: rgb(228, 228, 228);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.window{
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    font-size: 5rem;
+    background-color: var(--window-background);
+    color: var(--font);
+    width: 100%;
+    height: 10rem;
+    padding: 0 2rem 1rem 0;
+}
+
+.buttonGrid > .side-and-grid-buttons{
+    display: flex;
+    flex-direction: row;   
+}
+
+/* Number Buttons Container */
+.gridContainer {
+    width: 30rem;
+    background-color: var(--background);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* This reverses the order of the calculator buttons */
+    grid-auto-flow: dense;
+    direction: rtl;
+    /* ^^^^^ This reverses the order of the calculator buttons */
+    grid-gap: 20px;
+    padding: 20px;   
+    font-size: 3rem;
+}
+
+/* Buttons */
+.box{
+    padding: 10px;
+    background-color: var(--background-cal);
+    color: var(--font);
+
+    border: var(--border);
+    border-radius: var(--radius);
+}
+
+/* Spreading the zero button across two columns. */
+.gridContainer > div:nth-last-child(2){
+    grid-column: 3 / 1;
+}
+
+.sideButtons{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    padding: 20px 20px 20px 0;   
+    background-color: var(--background);
+    font-size: 3rem;
+}
+
+.sideButtons > .box {
+    width: 73px;
+    height: 63px;
+    background-color: var(--background-cal);
+}
+
+/* Top Buttons  */
+.topButtons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px 0 0 20px;   
+    background-color: var(--background);
+    font-size: 3rem;
+}
+
+.topButtons > .box{
+    width: 73.3333px;
+    height: 63px;
+    background-color: var(--background-cal);
+}
+
+.topButtons > div:first-child{
+ grid-column: 3 / 1;
+ width: 100%;
+ padding-right: 0px;
+ width: 164.6666px;
+}
