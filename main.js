@@ -17,7 +17,7 @@ const numberGrid = () => {
         // Append index content of div 
         cell.textContent = index
         cell.setAttribute('id', index)
-        cell.classList.add("box", "nums", "btn-light", "waves-effect")
+        cell.classList.add("box", "nums", "btn", "btn-warning")
         cell.setAttribute("onClick", "evaluationFunctions(this.id)")
         gridContainer.appendChild(cell)
 
@@ -25,7 +25,7 @@ const numberGrid = () => {
             let dot = document.createElement('button');
             dot.textContent = ".";
             dot.setAttribute('id', ".")
-            dot.classList.add("box")
+            dot.classList.add("box", "btn", "btn-warning")
             dot.setAttribute("onClick", "evaluationFunctions(this.id)")
             gridContainer.appendChild(dot)
         }  
@@ -44,7 +44,7 @@ const rightOperators = () => {
         let cell = document.createElement('button');
         cell.textContent = symbols[index];
         cell.setAttribute('id', symbols[index])
-        cell.classList.add("box", "eval")
+        cell.classList.add("box", "eval", "btn", "btn-warning")
         cell.setAttribute("onClick", "evaluationFunctions(this.id)")
         sideButtonsContainer.appendChild(cell)   
     }
@@ -62,7 +62,7 @@ const topOperators = () =>{
         let cell = document.createElement('button');
         cell.textContent = symbols[index];
         cell.setAttribute('id', symbols[index])
-        cell.classList.add("box", symbols[index], "eval")
+        cell.classList.add("box", symbols[index], "eval", "btn", "btn-warning")
         if(symbols[index].match("AC")){
             // sets the AC button to the reset function
             cell.setAttribute("onClick", "resetFunc(this.id)")
@@ -109,6 +109,7 @@ function evaluationFunctions(id){
     } else if (Number(id) == id){
         // Push id to array and set disabled attribute on all operator buttons to false
         currentSum.push(id)
+        calculatorContainer.innerHTML = currentSum.join("");
         clearFunc(false)
 
         // console.log(id, "number output")
@@ -116,6 +117,7 @@ function evaluationFunctions(id){
     } else if (Number(id) != id){
         // Push id to array and set disabled attribute on all operator buttons to true
         currentSum.push(id)
+        calculatorContainer.innerHTML = currentSum.join("");
         clearFunc(true)
         // console.log(id, "operator output")
     }
@@ -126,7 +128,7 @@ function returnSum(equation){
 
     // returns results to the console
     let sum = eval(equation)
-
+    // currentSum = String(sum)
     calculatorContainer.innerHTML = sum
     clearFunc(true)
     console.log(sum, "sum")
@@ -142,6 +144,34 @@ const resetFunc = () => {
     console.log(currentSum)
 
 }
+
+
+
+
+
+// Animations 
+
+
+// var tl = new TimelineMax({
+//     paused:true
+//   });
+//   // letter animation
+//   tl.fromTo("h1", 8, {
+//     width: "0",
+//   }, {
+//     width: "20.18em", /* same as CSS .line-1 width */
+//     ease:  SteppedEase.config(37)
+//   }, 0);
+//   // text cursor animation
+//   tl.fromTo("h1", 0.5, {
+//     "border-right-color": "rgba(255,255,255,0.75)"
+//   }, {
+//     "border-right-color": "rgba(255,255,255,0)",
+//     repeat: -1,
+//     ease:  SteppedEase.config(37)
+//   }, 0);
+  
+//   tl.play();
 
 
 

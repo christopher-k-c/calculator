@@ -18,6 +18,8 @@
     align-items: center;
 }
 
+
+
 .window{
     display: flex;
     justify-content: end;
@@ -100,4 +102,13 @@
  width: 100%;
  padding-right: 0px;
  width: 164.6666px;
+}
+
+.buttonGrid {
+
+    /* background: red; */
+    /* width: 500px; */
+
+    border: 10px solid rgba(27, 27, 27, 0.343);
+    border-radius: var(--radius);
 }
